@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# Url Shortener App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a url shortener meant to clone behavior of Bitly. When the current active code is run (startup info below), it will load up a simple page built in React. You can enter in your long url in the textfield and click the button to generate a short link which can be clicked and will redirect you to the long url. 
 
-## Available Scripts
+There are currently a few options to run this because I started this as a back end only project to learn about how Bitly works. So read on to find out more if you like.
 
-In the project directory, you can run:
+## Startup Instructions
 
-### `npm start`
+At this time, you have to open 2 terminals (1 for back end and 1 for front) to run this app. Open one terminal in the 'api' directory and have a second terminal terminal open in the root directory. Run ```npm start``` in both terminals to start the servers. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Currently, this is set up only to run locally. In the future I envision this will be connected to a mongoDB Atlas cluster for the db and it will be deployed on a heroku server so the links can persist (they will not work when you shut down your BE server).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Simplest Implementation
 
-### `npm test`
+The code with no database activated (when files and variables are commented out in back end files) will run the front and back end servers and allow the call to be made out from the front end to the back end to create the shortened code. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In this implementation, the code could really be shortened to just the code rather than even having the localhost baseUrl. This is because I have grabbed both the longUrl and the shortUrl. 
 
-### `npm run build`
+### 2nd implementation - with DB
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The code is already in the repo to connect to a mongoDB and run the front end locally to make this app work and persist while the BE server is active to handle redirects of a shortened url. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To do this: 
+    - Uncomment the imports and code pieces with notes about using with a DB in the Back end (under api directory) in the url.js, redirect.js, and the index.js files. 
+    - On the front end, the App.js file has a line that can be uncommented in the Axios.post method to enable the response to 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### later implementation - deployed with cloud DB and live for use any time
 
-### `npm run eject`
+In the future I plan to set up this application with a MongoDB Atlas Cluster and to Deploy the application via Heroku to have the BE and FE be largely always active. I plan to host it on Github Pages ideally but that could change down the road. I will also redo styling on things and link to the live app in my portfolio page. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+That way, I could actually send people to a site to play with the shortener and use it out to it's full capabilities. 
