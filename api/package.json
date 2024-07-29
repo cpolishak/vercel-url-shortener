@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js && react-scripts start"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,6 @@
   "homepage": "https://github.com/cpolishak/url-shortener#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
     "express": "^4.18.1",
     "generate-unique-id": "^2.0.1",
     "mongoose": "^6.4.0",

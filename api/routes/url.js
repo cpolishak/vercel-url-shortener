@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 // packages needed in this file
 const express = require("express");
 const validUrl = require("valid-url");
@@ -9,14 +7,14 @@ const generateUniqueId = require("generate-unique-id");
 const router = express.Router();
 
 // import the Url database model
-const Url = require('../models/UrlModel');
-const { trusted } = require('mongoose');
+// const Url = require('../models/UrlModel');
+// const { trusted } = require('mongoose');
 
 // @route    POST /api/url/shorten
 // @description     Create short URL
 
 // The API base Url endpoint
-const baseUrl = process.env.BASE_URL;
+const baseUrl = "http:localhost:5000";
 
 router.post("/shorten", async (req, res) => {
   const { longUrl } = req.body; // destructure the longUrl from req.body.longUrl
@@ -39,37 +37,37 @@ router.post("/shorten", async (req, res) => {
             in the collection that match the query. In this case, before creating the short URL,
             we check if the long URL was in the DB ,else we create it.
             */
-      let url = await Url.findOne({
-          longUrl
-      });
+      // let url = await Url.findOne({
+      //     longUrl
+      // });
 
       // Without DB, need to get the longUrl
-      // let url = longUrl;
+      let url = longUrl;
 
       // url exist and return the respose
       if (url) {
         // Use this res when DB active
-        res.json(url)
+        // res.json(url)
 
         // Otherwise use this when no DB
-        // const shortUrl = baseUrl + "/" + urlCode;
-        // res.json(shortUrl);
+        const shortUrl = baseUrl + "/" + urlCode;
+        res.json(shortUrl);
       } else {
         // join the generated short code the the base url
         const shortUrl = baseUrl + "/" + urlCode;
 
         // invoking the Url model and saving to the DB
-        url = new Url({
-            longUrl,
-            shortUrl,
-            urlCode,
-            date: new Date()
-        });
-        await url.save();
-        res.json(url);
+        // url = new Url({
+        //     longUrl,
+        //     shortUrl,
+        //     urlCode,
+        //     date: new Date()
+        // });
+        // await url.save();
+        // res.json(url);
 
         // Use this when no DB
-        // res.json(shortUrl);
+        res.json(shortUrl);
       }
     } catch (err) {
       // exception handler
