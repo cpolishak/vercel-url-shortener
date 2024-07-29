@@ -17,7 +17,7 @@ function App() {
   const [longUrl, setLongUrl] = useState("");
 
   // const baseUrl = process.env.BASE_URL;
-  const baseUrl = 'https://url-shortener-app-silk.vercel.app/'
+  const baseUrl = 'https://url-shortener-app-silk.vercel.app';
 
   const getShortUrl = () => {
     Axios.post(`${baseUrl}/api/url/shorten`, {
