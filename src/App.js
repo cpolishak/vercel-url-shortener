@@ -16,7 +16,8 @@ function App() {
   const [shortUrl, setShortUrl] = useState("");
   const [longUrl, setLongUrl] = useState("");
 
-  const baseUrl = "http://localhost:5000";
+  // const baseUrl = process.env.BASE_URL;
+  const baseUrl = 'https://url-shortener-app-silk.vercel.app/'
 
   const getShortUrl = () => {
     Axios.post(`${baseUrl}/api/url/shorten`, {
@@ -24,11 +25,12 @@ function App() {
     })
       .then((res) => {
         // Set state for the shortUrl w/DB active
-        // setShortUrl(res.data.shortUrl);
+        setShortUrl(res.data.shortUrl);
+        console.log(shortUrl)
 
         // Set longUrl state and get shortcut no DB
-        setLongUrl(inputVal);
-        setShortUrl(res.data);
+        // setLongUrl(inputVal);
+        // setShortUrl(res.data);
       })
       .catch((error) => {
         console.log("error: ", error);
@@ -50,6 +52,7 @@ function App() {
         backgroundColor: "rgb(5, 150, 170)",
       }}
     >
+
       <Card sx={{ width: "80%" }}>
         <CardContent sx={{ p: 3 }}>
           <Typography sx={{ fontSize: 24, textAlign: "center" }}>
@@ -74,8 +77,8 @@ function App() {
               pb: 3,
             }}
           >
-            <Button 
-            variant="contained" 
+            <Button
+            variant="contained"
             onClick={getShortUrl}
             sx={{ background: 'rgb(5, 150, 170)' }}
             >
@@ -86,17 +89,46 @@ function App() {
             <Card sx={{ bgcolor: '#B4D5D5'}}>
               <Typography sx={{ textAlign: "center" }}>
               <p>Here's your new shorter URL:</p>
-              <a href={longUrl}>{shortUrl}</a>
-              <p style={{ fontSize: 10 }}>
+              <a>{shortUrl}</a>
+              {/* <p style={{ fontSize: 10 }}>
                 * Please note: this url provided cannot actually be used outside
                 of this app at this time *
-              </p>
+              </p> */}
             </Typography>
               </Card>
           ) : null}
         </CardContent>
       </Card>
     </Box>
+
+    // <Box>
+    //   <div
+    //     className="div1"
+    //     style={{ border: "1px solid red", height: "200px" }}
+    //     onClick={(e) => {
+    //       e.stopPropagation();
+    //       alert('div1 clicked')
+    //     }}
+    //   >
+    //     <div
+    //       className="div2"
+    //       style={{ border: "1px solid blue", height: "150px" }}
+    //       onClick={(e) => {
+    //         e.stopPropagation();
+    //         alert('div2 clicked')
+    //       }}
+    //     >
+    //       <div
+    //         className="div3"
+    //         style={{ border: "1px solid green", height: "100px" }}
+    //         onClick={(e) => {
+    //           e.stopPropagation();
+    //           alert('div3 clicked')
+    //         }}
+    //       ></div>
+    //     </div>
+    //   </div>
+    // </Box>
   );
 }
 

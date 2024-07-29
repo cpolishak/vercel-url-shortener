@@ -1,8 +1,10 @@
+require('dotenv').config();
+
 // import mongoose package
 const mongoose = require('mongoose');
 
 // declare a Database string URI
-const DB_URI = 'mongodb://localhost:27017/urlshortener';
+const DB_URI = process.env.DB_URI;
 
 // establishing a database connection
 mongoose.connect(DB_URI, {
