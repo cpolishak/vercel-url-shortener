@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
 
@@ -48,7 +50,8 @@ app.get('/:code', async (req, res) => {
     }
 });
 
-const baseUrl = "http:localhost:5000";
+// const baseUrl = "http:localhost:5000";
+const baseUrl = process.env.BASE_URL;
 
 app.post("/shorten", async (req, res) => {
     const { longUrl } = req.body; // destructure the longUrl from req.body.longUrl
