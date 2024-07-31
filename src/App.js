@@ -17,7 +17,7 @@ function App() {
   const [longUrl, setLongUrl] = useState("");
 
   // const baseUrl = "http://localhost:5000";
-  const baseUrl = 'https://vercel-url-shortener-omega.vercel.app/';
+  const baseUrl = 'https://vercel-url-shortener-omega.vercel.app';
 
   const getShortUrl = () => {
     Axios.post(`${baseUrl}/shorten`, {
