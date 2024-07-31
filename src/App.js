@@ -19,7 +19,7 @@ function App() {
   const baseUrl = "http://localhost:5000";
 
   const getShortUrl = () => {
-    Axios.post(`${baseUrl}/api/url/shorten`, {
+    Axios.post(`${baseUrl}/shorten`, {
       longUrl: inputVal,
     })
       .then((res) => {
