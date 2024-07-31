@@ -1,7 +1,8 @@
-require('dotenv').config();
-
-const express = require("express");
+// const express = require("express");
+import express from "express";
 const app = express();
+
+require('dotenv').config();
 
 const validUrl = require("valid-url");
 const generateUniqueId = require("generate-unique-id");
@@ -17,7 +18,8 @@ app.use(cors());
 // Routes Config
 app.use(express.json({
     extended: false
-})) //parse incoming request body in JSON format.
+})); 
+//parse incoming request body in JSON format.
 // app.use('/', require('./routes/redirect'));
 // app.use('/api/url', require('./routes/url'));
 
@@ -32,7 +34,7 @@ app.get('/:code', async (req, res) => {
         // When run with no DB, this code doesn't get hit. It's using the info on the front end to redirect. 
         // This will be addressed when a DB is on locally (above) or when connected via cloud
         // This doesn't work locally with no DB because it's NOT getting the shortUrl and the longUrl to redirect to.
-        const url = {urlCode: req.params.code}
+        const url = {longUrl: req.params.code}
 
         if (url !== undefined) {
             // when valid we perform a redirect
@@ -118,4 +120,4 @@ app.post("/shorten", async (req, res) => {
 
 //Listen for incoming requests
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, console.log(`server started, listening PORT ${PORT}`));
+app.listen(PORT, () => console.log(`server started, listening PORT ${PORT}`));

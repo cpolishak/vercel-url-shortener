@@ -2,10 +2,10 @@
   "name": "y",
   "version": "1.0.0",
   "description": "A url shortener build in NodeJS",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.ts"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/cpolishak/url-shortener#readme",
   "dependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.18.1",
