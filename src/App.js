@@ -17,7 +17,7 @@ function App() {
   const [longUrl, setLongUrl] = useState("");
 
   // const baseUrl = "http://localhost:5000";
-  const baseUrl = 'https://vercel-url-shortener-omega.vercel.app';
+  const baseUrl = "https://vercel-url-shortener-omega.vercel.app";
 
   const getShortUrl = () => {
     Axios.post(`${baseUrl}/shorten`, {
@@ -75,25 +75,28 @@ function App() {
               pb: 3,
             }}
           >
-            <Button 
-            variant="contained" 
-            onClick={getShortUrl}
-            sx={{ background: 'rgb(5, 150, 170)' }}
+            <Button
+              variant="contained"
+              onClick={getShortUrl}
+              sx={{ background: "rgb(5, 150, 170)" }}
             >
               Shorten that URL
             </Button>
           </CardActions>
           {shortUrl !== "" ? (
-            <Card sx={{ bgcolor: '#B4D5D5'}}>
+            <Card sx={{ bgcolor: "#B4D5D5" }}>
               <Typography sx={{ textAlign: "center" }}>
-              <p>Here's your new shorter URL:</p>
-              <a href={longUrl}>{shortUrl}</a>
-              <p style={{ fontSize: 10 }}>
-                * Please note: this url provided cannot actually be used outside
-                of this app at this time *
-              </p>
-            </Typography>
-              </Card>
+                <p>Here's your new shorter URL:</p>
+                <a href={longUrl} target="_blank" rel="noopener noreferrer">
+                  {shortUrl}
+                </a>
+                <p style={{ fontSize: 10 }}>
+                  * Please note: this url provided cannot actually be used
+                  outside of this app at this time. DB coming soon to make
+                  persistence possible *
+                </p>
+              </Typography>
+            </Card>
           ) : null}
         </CardContent>
       </Card>
