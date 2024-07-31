@@ -88,7 +88,7 @@ app.post("/shorten", async (req, res) => {
   
           // Otherwise use this when no DB
           const shortUrl = baseUrl + "/" + urlCode;
-          res.json(shortUrl);
+          return res.json(shortUrl);
         } else {
           // join the generated short code the the base url
           const shortUrl = baseUrl + "/" + urlCode;
@@ -104,7 +104,7 @@ app.post("/shorten", async (req, res) => {
           // res.json(url);
   
           // Use this when no DB
-          res.json(shortUrl);
+          return res.json(shortUrl);
         }
       } catch (err) {
         // exception handler
