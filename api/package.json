@@ -2,10 +2,10 @@
   "name": "y",
   "version": "1.0.0",
   "description": "A url shortener build in NodeJS",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.ts"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -36,7 +36,6 @@
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16",
-    "typescript": "^5.4.5"
+    "nodemon": "^2.0.16"
   }
 }
