@@ -21,10 +21,10 @@ function App() {
   // ** BaseUrl needs to be swapped depening if local or deployed **
   // const baseUrl = "http://localhost:5000";
   // const baseUrl: string = "https://vercel-url-shortener-omega.vercel.app";
-  const baseUrl = process.env.BASE_URL;
+  // const baseUrl = process.env.BASE_URL;
 
   const getShortUrl = () => {
-    Axios.post(`${baseUrl}/shorten`, {
+    Axios.post(`/shorten`, {
       longUrl: inputVal,
     })
       .then((res) => {
