@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import Axios from "axios";
 import "./App.css";
-// import isValidUrl from 'valid-url';
 import isValidUrl from "valid-url";
 
 function App() {
@@ -18,19 +17,14 @@ function App() {
   const [shortUrl, setShortUrl] = useState("");
   const [longUrl, setLongUrl] = useState("");
 
-  // ** BaseUrl needs to be swapped depening if local or deployed **
-  // const baseUrl = "http://localhost:5000";
-  // const baseUrl: string = "https://vercel-url-shortener-omega.vercel.app";
-  // const baseUrl = process.env.BASE_URL;
-
   const getShortUrl = () => {
+    // *** Add baseUrl before /shorten for local running b/c diff server base url
     Axios.post(`/shorten`, {
       longUrl: inputVal,
     })
       .then((res) => {
-        // Set longUrl state and get shortcut no DB
         setLongUrl(inputVal);
-        // console.log(res.data);
+        console.log(res.data);
         setShortUrl(res.data);
       })
       .catch((error) => {
@@ -45,20 +39,45 @@ function App() {
     setInputVal(event.target.value);
   };
 
+  const shortenPageStyle = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    backgroundColor: "rgb(5, 150, 170)",
+  };
+
+  const textFieldStyle = {
+    width: "100%",
+    textAlign: "center",
+    pb: 1,
+  };
+
+  const btnCardStyle = {
+    justifyContent: "center",
+    alignItems: "center",
+    pb: 2,
+  };
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        backgroundColor: "rgb(5, 150, 170)",
-      }}
-    >
+    <Box sx={shortenPageStyle}>
+      <Box sx={{ pb: "40px" }}>
+        <Typography
+          variant="h2"
+          px={2}
+          sx={{
+            textAlign: "center",
+            color: "white",
+          }}
+        >
+          URL Shortener
+        </Typography>
+      </Box>
       <Card sx={{ width: "80%" }}>
         <CardContent sx={{ p: 3 }}>
-          <Typography sx={{ fontSize: 24, textAlign: "center" }}>
-            Let's shorten that url for you
+          <Typography variant="h6" pb={2} sx={{ textAlign: "center" }}>
+            Make your long URLs short
           </Typography>
           <TextField
             error={!validUrl && inputVal !== ""}
@@ -68,32 +87,24 @@ function App() {
             variant="filled"
             value={inputVal}
             onChange={handleChange}
-            sx={{
-              width: "100%",
-              textAlign: "center",
-              pb: 1,
-            }}
+            sx={textFieldStyle}
           />
-          <CardActions
-            sx={{
-              justifyContent: "center",
-              alignItems: "center",
-              pb: 3,
-            }}
-          >
+          <CardActions sx={btnCardStyle}>
             <Button
               variant="contained"
               onClick={getShortUrl}
               disabled={!inputVal || !validUrl}
               sx={{ background: "rgb(5, 150, 170)" }}
             >
-              Shorten that URL
+              Make it short
             </Button>
           </CardActions>
           {shortUrl !== "" ? (
-            <Card sx={{ bgcolor: "#B4D5D5" }}>
+            <Card sx={{ bgcolor: "#B4D5D5", padding: 1 }}>
+              <Typography py={1} sx={{ textAlign: "center" }}>
+                Here's your new short URL:
+              </Typography>
               <Typography sx={{ textAlign: "center" }}>
-                <p>Here's your new shorter URL:</p>
                 <a href={longUrl} target="_blank" rel="noopener noreferrer">
                   {shortUrl}
                 </a>
@@ -102,6 +113,9 @@ function App() {
           ) : null}
         </CardContent>
       </Card>
+      <Typography py={1} sx={{ color: "white" }}>
+        * Let's keep it classy here folks *
+      </Typography>
     </Box>
   );
 }
