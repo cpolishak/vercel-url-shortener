@@ -18,19 +18,19 @@ function App() {
   const [shortUrl, setShortUrl] = useState("");
   const [longUrl, setLongUrl] = useState("");
 
+  // ** BaseUrl needs to be swapped depening if local or deployed **
   // const baseUrl = "http://localhost:5000";
-  const baseUrl: string = "https://vercel-url-shortener-omega.vercel.app";
+  // const baseUrl: string = "https://vercel-url-shortener-omega.vercel.app";
+  const baseUrl = process.env.BASE_URL;
 
   const getShortUrl = () => {
     Axios.post(`${baseUrl}/shorten`, {
       longUrl: inputVal,
     })
       .then((res) => {
-        // Set state for the shortUrl w/DB active
-        // setShortUrl(res.data.shortUrl);
-
         // Set longUrl state and get shortcut no DB
         setLongUrl(inputVal);
+        // console.log(res.data);
         setShortUrl(res.data);
       })
       .catch((error) => {
@@ -61,10 +61,10 @@ function App() {
             Let's shorten that url for you
           </Typography>
           <TextField
-            error={!validUrl && inputVal !== ''}
+            error={!validUrl && inputVal !== ""}
             id="filled-basic"
             label="Enter long url here"
-            helperText={validUrl || inputVal === "" ? '' : 'invalid url'}
+            helperText={validUrl || inputVal === "" ? "" : "invalid url"}
             variant="filled"
             value={inputVal}
             onChange={handleChange}
@@ -97,9 +97,6 @@ function App() {
                 <a href={longUrl} target="_blank" rel="noopener noreferrer">
                   {shortUrl}
                 </a>
-                <p style={{ fontSize: 10 }}>
-                  * Please note: this url provided cannot actually be used outside of this app at this time. DB coming soon should make that possible *
-                </p>
               </Typography>
             </Card>
           ) : null}
